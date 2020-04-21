@@ -1,30 +1,39 @@
-# 🍅 Tomato Clock
+# LIFX Based Tomato Clock
+
+Based off the following Python packages
 [![Python package CI tomato-clock](https://github.com/coolcode/tomato-clock/workflows/Python%20package/badge.svg?branch=master)](https://github.com/coolcode/tomato-clock/actions)
 [![PyPI version tomato-clock](https://badge.fury.io/py/tomato-clock.svg)](https://pypi.python.org/pypi/tomato-clock/)
 
-Tomato Clock is a simple command line pomodoro app.
+LIFX Tomato Clock is a simple command line pomodoro app.
 
 Pomodoro 番茄工作法 https://en.wikipedia.org/wiki/Pomodoro_Technique
 
 ## Installation
 
-Install python from https://www.python.org/
-
-- Install via pip:
-```
-$ pip install tomato-clock
-```
-
-- Install via source code:
 ```
 $ git clone https://github.com/coolcode/tomato-clock.git
-$ cd tomato-clock
-$ chmod +x tomato.py 
+$ cd lifx-tomato-clock
+$ python3 lifx-tomato.py 
 ```
 
-## How to use
+### LIFX Access token
+Please read this [authentication page first]('https://api.developer.lifx.com/docs/authentication')
+Create the folder `~/.lifx`. Change the modifications to 700 so that no one else on your computer can read it.
+Then add in a file named 'lifx.yaml' and update accordingly.
 
-- if you install via pip
+```
+$ cat ~/.lifx/lifx.yaml
+access-token: <insert access token here>
+groups:
+  <name of your work room>:
+    id: <group id>
+    name: <group name>
+
+```
+
+### Getting the credentials for the above yaml file:
+Head to the [LIFX API ENDPOINTS PAGE](https://api.developer.lifx.com/docs/list-lights) and head down to 'Try It Out'.
+Insert 'all' into the selector page and your access token into the key.
 
 ```
 
@@ -52,45 +61,8 @@ $ ./tomato.py -h      # help
  🍅🍅---------------------------------------------- [8%] 23:4 ⏰ 
 ```
 
-## Desktop Notification
+## Light Output:
 
-- MacOS
-
-```
-$ brew install terminal-notifier 
-```
-
-`terminal-notifier` actually is a cross-platform desktop notifier, please refer to ➜ [terminal-notifier](https://github.com/julienXX/terminal-notifier#download)
-
-<img src="https://github.com/coolcode/tomato-clock/blob/master/img/screenshot-macos.png?raw=true" alt="terminal-notifier" width="300"/>
-
-- Ubuntu
-
-`notify-send`
-
-<img src="https://github.com/coolcode/tomato-clock/blob/master/img/screenshot-ubuntu.png?raw=true" alt="ubuntu-notification" width="300"/>
-
-
-
-## Voice Notification
-We use `say`(text-to-speech) for voice notification 
-
-- MacOS
-
-MacOS already has `say`. see [here](https://ss64.com/osx/say.html) or [more detail](https://gist.github.com/mculp/4b95752e25c456d425c6)  
-
-- Ubuntu
-
-see this link: [say](http://manpages.ubuntu.com/manpages/trusty/man1/say.1.html)
-```
-sudo apt-get install gnustep-gui-runtime
-```
-
-
-## Package & Publish
-```
-pip install setuptools wheel twine
-rm -rf dist && python setup.py sdist bdist_wheel
-twine upload dist/*
-```
+Focus mode: Light will turn white and 100% for 25 mins
+Stretch mode: Light will turn red with 100% saturation for 5 mins
 
