@@ -35,25 +35,6 @@ groups:
 Head to the [LIFX API ENDPOINTS PAGE](https://api.developer.lifx.com/docs/list-lights) and head down to 'Try It Out'.
 Insert 'all' into the selector page and your access token into the key.
 
-```
-
-$ tomato         # start a 25 minutes tomato clock + 5 minutes break
-$ tomato -t      # start a 25 minutes tomato clock
-$ tomato -t <n>  # start a <n> minutes tomato clock
-$ tomato -b      # take a 5 minutes break
-$ tomato -b <n>  # take a <n> minutes break
-$ tomato -h      # help
-```
-
-- if you install via source code
-```
-$ ./tomato.py         # start a 25 minutes tomato clock + 5 minutes break
-$ ./tomato.py -t      # start a 25 minutes tomato clock
-$ ./tomato.py -t <n>  # start a <n> minutes tomato clock
-$ ./tomato.py -b      # take a 5 minutes break
-$ ./tomato.py -b <n>  # take a <n> minutes break
-$ ./tomato.py -h      # help
-```
 
 ## Terminal Output
 ```
