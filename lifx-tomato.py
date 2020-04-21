@@ -60,7 +60,7 @@ def read_lifx_yaml_file():
 
     # Read with yaml
     with open(LIFX_YAML_FILEPATH, 'r') as access_token_fh:
-        yaml_dict = yaml.load(access_token_fh)
+        yaml_dict = yaml.load(access_token_fh, yaml.FullLoader)
 
     return yaml_dict
 
@@ -219,8 +219,8 @@ def main():
 
         else:
             help()
-
     except KeyboardInterrupt:
+        # TODO: Revert to original light state if selected
         print(f"\n{GOODBYE_UNICODE} goodbye")
     except Exception as ex:
         print(ex)
@@ -277,6 +277,7 @@ def notify_me(msg):
         elif sys.platform.startswith('linux'):
             # ubuntu desktop notification
             subprocess.Popen(["notify-send", f"{TOMATO_UNICODE}", msg])
+            # TODO add optional volume command
         else:
             # windows?
             # TODO: windows notification
@@ -287,6 +288,7 @@ def notify_me(msg):
 
 
 def help():
+    # FIXME: use argparse module instead.
     appname = sys.argv[0]
     appname = appname if appname.endswith('.py') else 'tomato'  # tomato is pypi package
     print('====== 🍅 Tomato Clock =======')
