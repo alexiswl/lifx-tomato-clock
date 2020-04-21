@@ -22,6 +22,7 @@ Create the folder `~/.lifx`. Change the modifications to 700 so that no one else
 mkdir --mode=700 ~/.lifx
 ```
 Then add in a file to this directory named 'lifx.yaml' and update accordingly.
+You may copy the file in `templates` for convenience.
 
 ```
 $ cat ~/.lifx/lifx.yaml
@@ -34,12 +35,12 @@ groups:
 ```
 
 ### Getting the credentials for the above yaml file:
-Head to the [LIFX API ENDPOINTS PAGE](https://api.developer.lifx.com/docs/list-lights) and head down to 'Try It Out'.
-Insert 'all' into the selector page and your access token as the authorization key.
-Click 'Try it' and head to the 'group' section.
-`<group id>` should become the value under `group` -> `id`.
-`<group name>` should become the value under `group` -> `name`.
-`<name of your work room>` itself is arbitrary and can be named to something convenient.
+Head to the [LIFX API ENDPOINTS PAGE](https://api.developer.lifx.com/docs/list-lights) and head down to 'Try It Out'.  
+Insert 'all' into the selector page and your access token as the authorization key.  
+Click 'Try it' and head to the 'group' section.  
+`<group id>` should become the value under `group` -> `id`.  
+`<group name>` should become the value under `group` -> `name`.  
+`<name of your work room>` itself is arbitrary and can be named to something convenient.  
 
 
 ## Terminal Output

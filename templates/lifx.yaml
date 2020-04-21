@@ -1,0 +1,5 @@
+access-token: <insert access token here>
+groups:
+  <name of your work room>:
+    id: <group id>
+    name: <group name>
