@@ -22,7 +22,6 @@ import time
 
 # Set globals
 LIFX_YAML_FILEPATH = Path.home() / ".lifx" / "lifx.yaml"
-GROUP = "bedroom"
 INITIAL_STATE_URL = "https://api.lifx.com/v1/lights/{0[selector]}/state"
 CYCLE_STATE_URL = "https://api.lifx.com/v1/lights/{0[selector]}/cycle"
 
@@ -98,7 +97,9 @@ def get_group(yaml_dict):
     :return:
     """
 
-    group_dict = yaml_dict["groups"][GROUP]
+    group_name = list(yaml_dict["groups"].keys())[0]
+
+    group_dict = yaml_dict["groups"][group_name]
 
     # Check group_dict has an id attribute
     if 'id' not in group_dict.keys():
@@ -139,8 +140,7 @@ def set_initial_state(group_dict, yaml_dict):
     # Request obj
     r = requests.put(put_url, headers=headers, json=json_body)
 
-    json_response = r.json()
-    print(json_response)
+    json_response = r.json() 
 
 
 def get_cycle_state_url(group_dict):
@@ -193,13 +193,14 @@ def main():
 
     try:
         if len(sys.argv) <= 1:
-            print(f'{TOMATO_UNICODE} tomato {WORK_MINUTES} minutes. Ctrl+C to exit')
-            tomato(WORK_MINUTES, 'It is time to take a break')
-            change_state(group_dict, yaml_dict)
+            while True:
+                print(f'{TOMATO_UNICODE} tomato {WORK_MINUTES} minutes. Ctrl+C to exit')
+                tomato(WORK_MINUTES, 'It is time to take a break')
+                change_state(group_dict, yaml_dict)
 
-            print(f'{TOMATO_UNICODE} break {BREAK_MINUTES} minutes. Ctrl+C to exit')
-            tomato(BREAK_MINUTES, 'It is time to work')
-            change_state(group_dict, yaml_dict)
+                print(f'{TOMATO_UNICODE} break {BREAK_MINUTES} minutes. Ctrl+C to exit')
+                tomato(BREAK_MINUTES, 'It is time to work')
+                change_state(group_dict, yaml_dict)
 
         elif sys.argv[1] == '-t':
             minutes = int(sys.argv[2]) if len(sys.argv) > 2 else WORK_MINUTES
@@ -207,7 +208,7 @@ def main():
             tomato(minutes, 'It is time to take a break')
             change_state(group_dict, yaml_dict)
 
-        elif sys.argv[1] == '-b':
+        elif sys.argv[1] == '-b': 
             minutes = int(sys.argv[2]) if len(sys.argv) > 2 else BREAK_MINUTES
             change_state(group_dict, yaml_dict)
             print(f'{BATH_UNICODE} break {minutes} minutes. Ctrl+C to exit')
